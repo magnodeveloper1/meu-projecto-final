@@ -1,13 +1,12 @@
-package ao.uan.finalproject.model;
+package ao.uan.finalproject.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table
-public class Professor {
+public class Departamento {
+    
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
