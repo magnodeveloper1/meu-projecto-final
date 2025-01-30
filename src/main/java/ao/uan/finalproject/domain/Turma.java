@@ -22,8 +22,8 @@ public class Turma {
     private String ano;
     private String semestre;
 
-    @JoinColumn()
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "departamento_id", nullable = false)
+    @ManyToOne
     private Departamento departamento;
 
     public Long getId() {

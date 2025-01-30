@@ -23,4 +23,5 @@ public class RestConfiguration implements RepositoryRestConfigurer {
         config.exposeIdsFor(classes);
         config.setBasePath("/api");
     }
+
 }
