@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## Sem Necessidade de enviar propriedades
+*.properties
