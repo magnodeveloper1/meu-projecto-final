@@ -14,7 +14,7 @@ public class Professor {
     @GeneratedValue
     private Long id;
 
-    @JoinColumn(referencedColumnName = "id", name = "utilizador_id")
+    @JoinColumn(referencedColumnName = "id", name = "utilizador_id", unique = true)
     @ManyToOne
     private Utilizador utilizador;
 
