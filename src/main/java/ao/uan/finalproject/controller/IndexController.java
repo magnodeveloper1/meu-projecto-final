@@ -10,6 +10,6 @@ public class IndexController {
     
     @GetMapping(value = "/")
     public String index() {
-        return "login";
+        return "index";
     }
 }

@@ -18,6 +18,7 @@ public class RestConfiguration implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(
             RepositoryRestConfiguration config, CorsRegistry cors) {
+                
         Class[] classes = entityManager.getMetamodel()
                 .getEntities().stream().map(Type::getJavaType).toArray(Class[]::new);
         config.exposeIdsFor(classes);
