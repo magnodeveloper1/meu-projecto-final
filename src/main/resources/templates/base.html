@@ -27,6 +27,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+    <!-- link rel="stylesheet" th:href="@{/css/cs-skin-elastic.css}" -->
+    <link rel="stylesheet" th:href="@{/css/lib/chosen/chosen.min.css}">
+    <div layout:fragment="styleadd"></div>
 
    <style>
     #weatherWidget .currentDesc {
@@ -130,5 +133,15 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script th:src="@{/js/init/fullcalendar-init.js}"></script>
+    <script th:src="@{/js/lib/chosen/chosen.jquery.min.js}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+        });
+    </script>
 </body>
 </html>
