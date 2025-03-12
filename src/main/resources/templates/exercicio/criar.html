@@ -1,14 +1,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
 
-<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css">
-<style>
-    .main-container {
-        width: 795px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
+<div layout:fragment="styleadd">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css">
+    <style>
+        .main-container {
+            width: 795px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</div>
+
 
 <title>Eola - Criar Exercicios</title>
 <h1 layout:fragment="titulo">Criar Exercicios</h1>
@@ -16,40 +19,38 @@
 <div class="content" layout:fragment="content">
     <div class="animated fadeIn">
         <div class="row">
-            <div class="col-xs-8 col-sm-8">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">Entradas e Saidas</strong>
-                    </div>
-                    <div class="card-body">
-                        <div class="main-container">
-                            <div id="editor">
-                                <p>Hello from CKEditor 5!</p>
+            <form action="#" th:action="@{/exercicio/criar/add}" th:object="${entradaSaida}" method="post">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Descricao do Exercicio</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="main-container">
+                                <textarea th:field="*{exercicio.descricao}" id="editor" style="width: 100% !important;"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">Dados do Exercicio</strong>
-                    </div>
-                    <div class="card-body">
-                        <!-- Credit Card -->
-                        <div id="pay-invoice">
-                            <div class="card-body">
-                                <form action="#" method="post" novalidate="novalidate">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Dados do Exercicio</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Score</label>
                                         <input id="cc-payment" name="cc-payment" type="number" class="form-control"
                                             aria-required="true" aria-invalid="false" value="0.00" min="0.50" max="20"
-                                            required>
+                                            required th:field="*{exercicio.score}">
                                     </div>
                                     <div class="form-group has-success">
                                         <label for="cc-name" class="control-label mb-1">Categorias</label>
                                         <select data-placeholder="Escolher Categorias..." multiple
-                                            class="standardSelect">
+                                            class="standardSelect" th:field="*{exercicio.categorias}">
                                             <option value="" label="default"></option>
                                             <option value="java">Java</option>
                                             <option value="algoritmo">Algoritmo</option>
@@ -57,58 +58,81 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cc-number" class="control-label mb-1">Card number</label>
+                                        <label for="cc-number" class="control-label mb-1">Tempo Max. Execucao</label>
                                         <input id="cc-number" name="cc-number" type="tel"
                                             class="form-control cc-number identified visa" value="" data-val="true"
-                                            data-val-required="Please enter the card number"
-                                            data-val-cc-number="Please enter a valid card number">
+                                            th:field="*{exercicio.maxTempo}">
                                         <span class="help-block" data-valmsg-for="cc-number"
                                             data-valmsg-replace="true"></span>
                                     </div>
-                                    <div>
-                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                            <i class="fa fa-next"></i>
-                                            <span id="payment-button-amount">Seguinte</span>
-                                        </button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
+
                         </div>
+                    </div> <!-- .card -->
 
-                    </div>
-                </div> <!-- .card -->
+                </div><!--/.col-->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Entradas/Saidas</strong>
+                            <p>Apenas 5 casos</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
+                                    <form action="#" method="post" novalidate="novalidate">
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Caso 1</label>
+                                            <input type="text" class="form-control" th:field="*{entrada}" required>
+                                            <input type="text" class="form-control" th:field="*{saida}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Caso 2</label>
+                                            <input type="text" class="form-control" th:field="*{entrada1}" required>
+                                            <input type="text" class="form-control" th:field="*{saida1}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Caso 3</label>
+                                            <input type="text" class="form-control" th:field="*{entrada2}" required>
+                                            <input type="text" class="form-control" th:field="*{saida2}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Caso 4</label>
+                                            <input type="text" class="form-control" th:field="*{entrada3}" required>
+                                            <input type="text" class="form-control" th:field="*{saida3}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Caso 5</label>
+                                            <input type="text" class="form-control" th:field="*{entrada4}" required>
+                                            <input type="text" class="form-control" th:field="*{saida4}" required>
+                                        </div>
+                                        <div>
+                                            <button id="payment-button" type="submit"
+                                                class="btn btn-lg btn-info btn-block">
+                                                <i class="fa fa-next"></i>
+                                                <span id="payment-button-amount">Concluir Processo</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
 
-            </div><!--/.col-->
+                        </div>
+                    </div> <!-- .card -->
+
+                </div><!--/.col-->
+            </form>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.umd.js"></script>
-<script>
-    const {
-        ClassicEditor,
-        Essentials,
-        Paragraph,
-        Bold,
-        Italic,
-        Font
-    } = CKEDITOR;
-    // Create a free account and get <YOUR_LICENSE_KEY>
-    // https://portal.ckeditor.com/checkout?plan=free
-    ClassicEditor
-        .create( document.querySelector( '#editor' ), {
-            licenseKey: '<YOUR_LICENSE_KEY>',
-            plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
-            toolbar: [
-                'undo', 'redo', '|', 'bold', 'italic', '|',
-                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
-            ]
-        } )
-        .then( editor => {
-            window.editor = editor;
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+<div layout:fragment="scriptadd">
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+</div>
+
 </html>
