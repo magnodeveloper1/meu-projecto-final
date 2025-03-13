@@ -1,12 +1,28 @@
 package ao.uan.finalproject.controller;
 
+import java.util.Base64;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import ao.uan.finalproject.domain.EntradaSaida;
+import ao.uan.finalproject.domain.Exercicio;
+import ao.uan.finalproject.repository.EntradaSaidaRepository;
+import ao.uan.finalproject.repository.ExercicioRepository;
 
 @Controller
 public class ExercicioController {
+
+    @Autowired
+    private ExercicioRepository exercicioRepository;
+
+    @Autowired
+    private EntradaSaidaRepository entradaSaidaRepository;
     
     @GetMapping("/exercicio")
     public String screenList() {
@@ -14,19 +30,38 @@ public class ExercicioController {
     }
 
     @GetMapping("exercicio/criar")
-    public String screenCriar() {
+    public String screenCriar(Model model) {
+
+        Exercicio exercicio = new Exercicio();
+        EntradaSaida entradaSaida = new EntradaSaida();
+
+        model.addAttribute("exercicio", exercicio);
+        model.addAttribute("entradaSaida", entradaSaida);
         return "exercicio/criar.html";
     }
 
-    @GetMapping("exercicio/criar/2")
+    @PostMapping("exercicio/criar/add")
     public String screenCriar2(
-        @RequestParam(name = "source") String encriptInfo
+        @ModelAttribute EntradaSaida entradaSaida
     ) {
 
-        Object[] values = new Object[8];
+        if(entradaSaida != null) {
+            Exercicio exercicio = entradaSaida.getExercicio();
 
-        try {
-        } catch(Exception ex) {}
+            if(exercicio != null) {
+
+                exercicio.setAtivo(true);
+                exercicioRepository.save(exercicio);
+
+                if(Objects.isNull(exercicio.getId())) {
+                    System.out.println("N~ao Guardou Info.");
+                } else {
+                    entradaSaidaRepository.save(entradaSaida);
+                }
+            }
+        } else {
+            System.out.println("Vazio!!");
+        }
 
         return "exercicio/criar.html";
     }
