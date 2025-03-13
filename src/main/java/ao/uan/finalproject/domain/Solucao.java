@@ -30,6 +30,8 @@ public class Solucao {
 
     private Date dataSubmissao;
 
+    private boolean ok;
+
     public Long getId() {
         return id;
     }
@@ -68,6 +70,14 @@ public class Solucao {
 
     public void setDataSubmissao(Date dataSubmissao) {
         this.dataSubmissao = dataSubmissao;
+    }
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean ok) {
+        this.ok = ok;
     }
 
 }
