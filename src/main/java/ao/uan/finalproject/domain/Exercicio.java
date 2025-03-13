@@ -1,5 +1,8 @@
 package ao.uan.finalproject.domain;
 
+import java.util.Set;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,9 +16,11 @@ public class Exercicio {
     @GeneratedValue
     private Long id;
 
-    private String sequencia;
+    private float score;
     private String titulo;
     private String descricao;
+    private String[] categorias;
+    private float maxTempo;
 
     @JoinColumn(referencedColumnName = "id", name = "avaliacao_id")
     @ManyToOne
@@ -24,6 +29,10 @@ public class Exercicio {
     @JoinColumn(referencedColumnName = "id", name = "professor_id")
     @ManyToOne
     private Professor professor;
+    
+    @JoinColumn(name = "entradasaida_id")
+    @OneToMany
+    private Set<EntradaSaida> entradaSaida;
 
     private boolean ativo;
     private boolean criadoEmAvaliacao;
@@ -36,12 +45,28 @@ public class Exercicio {
         this.id = id;
     }
 
-    public String getSequencia() {
-        return sequencia;
+    public float getScore() {
+        return score;
     }
 
-    public void setSequencia(String sequencia) {
-        this.sequencia = sequencia;
+    public void setScore(float score) {
+        this.score = score;
+    }
+
+    public String[] getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(String[] categorias) {
+        this.categorias = categorias;
+    }
+
+    public Set<EntradaSaida> getEntradaSaida() {
+        return entradaSaida;
+    }
+
+    public void setEntradaSaida(Set<EntradaSaida> entradaSaida) {
+        this.entradaSaida = entradaSaida;
     }
 
     public String getTitulo() {
@@ -90,5 +115,13 @@ public class Exercicio {
 
     public void setCriadoEmAvaliacao(boolean criadoEmAvaliacao) {
         this.criadoEmAvaliacao = criadoEmAvaliacao;
+    }
+
+    public float getMaxTempo() {
+        return maxTempo;
+    }
+
+    public void setMaxTempo(float maxTempo) {
+        this.maxTempo = maxTempo;
     }
 }
