@@ -28,8 +28,8 @@ public class EntradaSaida {
     private String entrada4;
     private String saida4;
 
-    @JoinColumn(referencedColumnName = "id", name = "professor_id")
     @ManyToOne
+    @JoinColumn(name = "exercicio_id", nullable = false)
     private Exercicio exercicio;
 
     public Long getId() {

@@ -27,31 +27,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="serial">1.</td>
-                                    <td> <span class="name">Louis Stanley</span> </td>
-                                    <td> <span class="product">iMax</span> </td>
-                                    <td><span class="count">231</span></td>
+
+                                <tr th:each="data : ${listExercicio}">
+                                    <td class="serial" th:text="${data.id}"></td>
+                                    <td> <span class="name" th:text="${data.titulo}"></span> </td>
+                                    <td> <span class="product" th:each="categoria : ${data.categorias}" th:if="${!categoria.equals('')}" th:text="${categoria.concat(', ')}"></span> </td>
+                                    <td><span class="count" th:text="${data.score}"></span></td>
                                     <td>
-                                        <span class="badge badge-complete">Complete</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="serial">1.</td>
-                                    <td> <span class="name">Louis Stanley</span> </td>
-                                    <td> <span class="product">iMax</span> </td>
-                                    <td><span class="count">231</span></td>
-                                    <td>
-                                        <span class="badge badge-complete">Complete</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="serial">1.</td>
-                                    <td> <p>Titulo</p></td>
-                                    <td> Java </td>
-                                    <td><span class="count">231</span></td>
-                                    <td>
-                                        <span class="badge badge-pending">Resolver</span>
+                                        <span class="badge badge-complete"><a th:href="@{/exercicio/view} + ${'/'+data.id}">Resolver</a></span>
                                     </td>
                                 </tr>
                             </tbody>

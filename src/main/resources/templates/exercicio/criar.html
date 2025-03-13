@@ -18,18 +18,15 @@
 
 <div class="content" layout:fragment="content">
     <div class="animated fadeIn">
-        <div class="row">
-            <form action="#" th:action="@{/exercicio/criar/add}" th:object="${entradaSaida}" method="post">
+        <form action="#" th:action="@{/exercicio/criar/add}" th:object="${entradaSaida}" method="post">
+            <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Descricao do Exercicio</strong>
                         </div>
-                        <div class="card-body">
-                            <div class="main-container">
-                                <textarea th:field="*{exercicio.descricao}" id="editor" style="width: 100% !important;"></textarea>
-                            </div>
-                        </div>
+                        <textarea th:field="*{exercicio.descricao}" id="editor"
+                            style="width: 100% !important;" required></textarea>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -42,8 +39,16 @@
                             <div id="pay-invoice">
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <label for="cc-payment" class="control-label mb-1">Titulo Do Exercicio *</label>
+                                        <input type="text" class="form-control"
+                                            aria-required="true" aria-invalid="false" value="0.00" min="0.50" max="20"
+                                            required th:field="*{exercicio.titulo}">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Score</label>
-                                        <input id="cc-payment" name="cc-payment" type="number" class="form-control"
+                                        <input type="number" class="form-control"
                                             aria-required="true" aria-invalid="false" value="0.00" min="0.50" max="20"
                                             required th:field="*{exercicio.score}">
                                     </div>
@@ -59,8 +64,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cc-number" class="control-label mb-1">Tempo Max. Execucao</label>
-                                        <input id="cc-number" name="cc-number" type="tel"
-                                            class="form-control cc-number identified visa" value="" data-val="true"
+                                        <input type="number"
+                                            class="form-control cc-number identified visa" value=""
                                             th:field="*{exercicio.maxTempo}">
                                         <span class="help-block" data-valmsg-for="cc-number"
                                             data-valmsg-replace="true"></span>
@@ -123,8 +128,8 @@
                     </div> <!-- .card -->
 
                 </div><!--/.col-->
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 

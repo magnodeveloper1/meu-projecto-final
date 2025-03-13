@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<title>Eola - Lista de Exercicios</title>
+<h1 layout:fragment="titulo">Lista de Exercicios</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="feed-box text-center">
+                    <section class="card">
+                        <div class="card-body">
+                            <div class="corner-ribon blue-ribon">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                            <h2 th:text="${exercicio.titulo}"></h2>
+                            <p><span class="product" th:each="categoria : ${exercicio.categorias}" th:if="${!categoria.equals('')}" th:text="${categoria.concat(', ')}"></span>
+                                | SCORE: <span class="product" th:text="${exercicio.score}" ></span>| MAX. TEMPO DE EXECUCAO: <span class="product" th:text="${exercicio.maxTempo}" ></span></p>
+                            <p><span class="product" th:text="${exercicio.maxTempo}" ></span></p>
+                            <div th:if="${exercicio.professor != null}" th:text="${exercicio.professor.utilizador.primeiroNome + ' ' + exercicio.professor.utilizador.primeiroNome}"></div>
+                        </div>
+                        <div th:text="${exercicio.descricao}"></div>
+                        <p></p>
+                        <hr>
+                        <div style="text-align: justify; margin-left: 10px;">
+                            <p>Entrada e Saida</p>
+                            3
+                            <div th:each="io : ${exercicio.entradaSaida}">
+                                oi
+                                <div th:text="io.entrada"></div>
+                                <div th:text="io.saida"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
