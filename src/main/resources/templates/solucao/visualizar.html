@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<title>Eola - Lista de Exercicios</title>
+<h1 layout:fragment="titulo">Lista de Exercicios</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <a th:href="@{exercicio/criar}" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Exercicios</a>
+                <br/>
+                <br/>
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Minhas solucoes</strong>
+                    </div>
+                    <div class="table-stats order-table ov-h">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>Titulo</th>
+                                    <th>Categorias</th>
+                                    <th>Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr th:each="data : ${listExercicio}">
+                                    <td class="serial" th:text="${data.id}"></td>
+                                    <td> <span class="name" th:text="${data.titulo}"></span> </td>
+                                    <td> <span class="product" th:each="categoria : ${data.categorias}" th:if="${!categoria.equals('')}" th:text="${categoria.concat(', ')}"></span> </td>
+                                    <td><span class="count" th:text="${data.score}"></span></td>
+                                    <td>
+                                        <span class="badge badge-complete"><a th:href="@{/exercicio/view} + ${'/'+data.id}">Resolver</a></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

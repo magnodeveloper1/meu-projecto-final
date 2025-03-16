@@ -1,5 +1,6 @@
 package ao.uan.finalproject.domain;
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -19,7 +20,7 @@ public class Departamento {
 
     @JoinColumn(name = "turma_id")
     @OneToMany
-    private Set<Turma> turmas;
+    private List<Turma> turmas;
 
     public Long getId() {
         return id;
@@ -37,11 +38,11 @@ public class Departamento {
         this.nome = nome;
     }
 
-    public Set<Turma> getTurmas() {
+    public List<Turma> getTurmas() {
         return turmas;
     }
 
-    public void setTurmas(Set<Turma> turmas) {
+    public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
 }

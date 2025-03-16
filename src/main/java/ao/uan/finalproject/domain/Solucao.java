@@ -4,13 +4,17 @@ import java.sql.Date;
 
 import org.hibernate.annotations.ManyToAny;
 
+import ao.uan.finalproject.handler.SolucaoEventHandler;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
+@EntityListeners(SolucaoEventHandler.class)
 public class Solucao {
     
     @Id
@@ -20,17 +24,19 @@ public class Solucao {
     @Column(nullable = false)
     private String code;
     
-    @ManyToAny
+    @ManyToOne
     @JoinColumn
     private Utilizador utilizador;
     
-    @ManyToAny
+    @ManyToOne
     @JoinColumn
     private Exercicio exercicio;
 
     private Date dataSubmissao;
 
     private boolean ok;
+
+    private String linguagem;
 
     public Long getId() {
         return id;
@@ -78,6 +84,14 @@ public class Solucao {
 
     public void setOk(boolean ok) {
         this.ok = ok;
+    }
+
+    public String getLinguagem() {
+        return linguagem;
+    }
+
+    public void setLinguagem(String linguagem) {
+        this.linguagem = linguagem;
     }
 
 }

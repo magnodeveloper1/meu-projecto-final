@@ -1,6 +1,7 @@
 package ao.uan.finalproject.domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import ao.uan.finalproject.dto.enums.TipoAvaliacao;
@@ -29,7 +30,7 @@ public class Avaliacao {
     
     @JoinColumn(name = "exercicio_id")
     @OneToMany
-    private Set<Exercicio> exercicio;
+    private List<Exercicio> exercicio;
 
     public Long getId() {
         return id;
@@ -87,11 +88,11 @@ public class Avaliacao {
         this.duracaoMinutos = duracaoMinutos;
     }
 
-    public Set<Exercicio> getExercicio() {
+    public List<Exercicio> getExercicio() {
         return exercicio;
     }
 
-    public void setExercicio(Set<Exercicio> exercicio) {
+    public void setExercicio(List<Exercicio> exercicio) {
         this.exercicio = exercicio;
     }
 }

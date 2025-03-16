@@ -33,7 +33,7 @@ public class Exercicio {
     
     @JoinColumn(name = "entradasaida_id")
     @OneToMany
-    private Set<EntradaSaida> entradaSaida;
+    private List<EntradaSaida> entradaSaida;
 
     private boolean ativo;
     private boolean criadoEmAvaliacao;
@@ -62,11 +62,11 @@ public class Exercicio {
         this.categorias = categorias;
     }
 
-    public Set<EntradaSaida> getEntradaSaida() {
+    public List<EntradaSaida> getEntradaSaida() {
         return entradaSaida;
     }
 
-    public void setEntradaSaida(Set<EntradaSaida> entradaSaida) {
+    public void setEntradaSaida(List<EntradaSaida> entradaSaida) {
         this.entradaSaida = entradaSaida;
     }
 

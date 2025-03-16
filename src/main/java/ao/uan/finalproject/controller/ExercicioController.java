@@ -1,6 +1,7 @@
 package ao.uan.finalproject.controller;
 
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ao.uan.finalproject.domain.EntradaSaida;
 import ao.uan.finalproject.domain.Exercicio;
+import ao.uan.finalproject.domain.Solucao;
+import ao.uan.finalproject.domain.Utilizador;
 import ao.uan.finalproject.repository.EntradaSaidaRepository;
 import ao.uan.finalproject.repository.ExercicioRepository;
+import ao.uan.finalproject.repository.SolucaoRepository;
+import ao.uan.finalproject.repository.UtilizadorRepository;
 
 @Controller
 public class ExercicioController {
@@ -26,6 +31,12 @@ public class ExercicioController {
 
     @Autowired
     private EntradaSaidaRepository entradaSaidaRepository;
+
+    @Autowired
+    private SolucaoRepository solucaoRepository;
+
+    @Autowired
+    private UtilizadorRepository userRepo;
     
     @GetMapping("/exercicio")
     public String screenList(Model model) {
@@ -52,9 +63,9 @@ public class ExercicioController {
 
             if(!exercicio.isEmpty()) {
                 Exercicio exerc = exercicio.get();
-                exerc.setEntradaSaida(entradaSaidaRepository.findByExercicio());
-                model.addAttribute("exercicio", );
-                System.out.println("quantidades de entradas = " + exercicio.get().getEntradaSaida().size());
+                exerc.setEntradaSaida(entradaSaidaRepository.findByExercicio(exerc));
+                model.addAttribute("exercicio", exerc);
+                model.addAttribute("solucao", new Solucao());
                 return "exercicio/visualizar.html";
             }
         }
@@ -88,5 +99,20 @@ public class ExercicioController {
         }
 
         return "exercicio/criar.html";
+    }
+
+    @PostMapping("exercicio/solucao/add")
+    public String actionCriarSolucao(
+        @ModelAttribute Solucao solucao, Model model
+    ) {
+
+        if(solucao != null) {
+            solucaoRepository.save(solucao);
+        }
+
+        List<Exercicio> exercicios = exercicioRepository.findAll();
+        model.addAttribute("listExercicio", exercicios);
+
+        return "exercicio/list.html";
     }
 }

@@ -3,6 +3,7 @@ package ao.uan.finalproject.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import ao.uan.finalproject.handler.SolucaoHandler;
 import ao.uan.finalproject.handler.UtilizadorHandler;
 
 @Configuration
