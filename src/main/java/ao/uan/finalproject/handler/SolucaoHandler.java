@@ -41,7 +41,7 @@ public class SolucaoHandler {
             Process processoCompilar = executeCommend("javac Main.java", f);
             processoCompilar.waitFor();
 
-            Process processoExecutar = executeCommend("java Main", f);
+            Process processoExecutar = executeCommend("ifconfig", f);
             String saida = entradaSaida(entradaSaida.getEntrada(), processoExecutar);
             int exitCode = processoExecutar.waitFor();
 
@@ -80,9 +80,10 @@ public class SolucaoHandler {
         Process p = null;
         try {
             // bash - para o caso do MacOS
-            ProcessBuilder pb = new ProcessBuilder("bash", "/c", command);
+            ProcessBuilder pb = new ProcessBuilder("sh", "-c", command);
             pb.directory(f.getParentFile());
             pb.redirectErrorStream(true);
+            pb.redirectError(new File(f.getParentFile() + "/log")); //Log errors in specified log file.
             p = pb.start();
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +104,7 @@ public class SolucaoHandler {
             String linha;
 
             while ((linha = reader.readLine()) != null) {
-                saida = linha;
+                saida += ("\n" + linha);
             }
         } catch (IOException e) {
             saida = e.toString();
