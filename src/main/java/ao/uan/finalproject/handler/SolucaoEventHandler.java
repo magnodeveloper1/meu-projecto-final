@@ -41,10 +41,10 @@ public class SolucaoEventHandler {
         System.out.println("After Save ...");
         try {
             File f = createFile(solucao.getCode());
-            Process processoCompilar = executeCommend("mkdir example", f);
-            processoCompilar.waitFor();
+            Process processoCompilar = executeCommend("javac Main.java", f);
+            // processoCompilar.waitFor();
 
-            Process processoExecutar = executeCommend("ifconfig", f);
+            Process processoExecutar = executeCommend("java Main", f);
             String saida = "";
             
             try {
@@ -74,23 +74,23 @@ public class SolucaoEventHandler {
 
         } catch (InterruptedException | FileNotFoundException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     public File createFile(String texto) throws FileNotFoundException {
-        File rootFolder = new File("/Users/elmagno/Documents/Projectos/Uan/eola/solucao");
+        File rootFolder = new File("C:\\Users\\i001180\\Documents\\3. Projectos\\meu-projecto-final\\solucao");
         File file = null;
 
-        System.out.println("Folder");
+        System.out.println("Folder = ");
         if(rootFolder.exists() && rootFolder.isDirectory()) {
-            file = new File(rootFolder.getAbsolutePath()+"/Main.java");
+            file = new File(rootFolder.getAbsolutePath()+"\\Main.java");
             if(!file.exists()) {
 
                 try {
                     System.out.println("Criando");
                     file.createNewFile();
                 } catch (IOException e) {
-                    System.out.println("N~ao criou-se : " + e.toString());
+                    System.out.println("Não criou-se : " + e.toString());
                 }
 
             }
@@ -109,11 +109,11 @@ public class SolucaoEventHandler {
         Process p = null;
         try {
             // bash - para o caso do MacOS
-            /* ProcessBuilder pb = new ProcessBuilder("bash", "/c", command);
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", command);
             pb.directory(f.getParentFile());
             pb.redirectErrorStream(true);
-            p = pb.start(); */
-            p = Runtime.getRuntime().exec("ifconfig");
+            p = pb.start();
+            // p = Runtime.getRuntime().exec("ifconfig");
         } catch (IOException e) {
             System.out.println("n~ao executou ...");
         }

@@ -19,6 +19,7 @@ import ao.uan.finalproject.domain.Solucao;
 import ao.uan.finalproject.repository.EntradaSaidaRepository;
 import ao.uan.finalproject.repository.SolucaoRepository;;
 
+// NÃO UTILIZANDO
 @RepositoryEventHandler
 public class SolucaoHandler {
 
@@ -39,7 +40,7 @@ public class SolucaoHandler {
 
             File f = createFile(solucao.getCode());
             Process processoCompilar = executeCommend("javac Main.java", f);
-            processoCompilar.waitFor();
+            // processoCompilar.waitFor();
 
             Process processoExecutar = executeCommend("java Main", f);
             String saida = entradaSaida(entradaSaida.getEntrada(), processoExecutar);
@@ -57,6 +58,7 @@ public class SolucaoHandler {
 
     public File createFile(String texto) throws FileNotFoundException {
         File rootFolder = new File("/solucao");
+        rootFolder.mkdir();
         File file = null;
 
         if(rootFolder.exists() && rootFolder.isDirectory()) {
@@ -80,7 +82,7 @@ public class SolucaoHandler {
         Process p = null;
         try {
             // bash - para o caso do MacOS
-            ProcessBuilder pb = new ProcessBuilder("bash", "/c", command);
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", command);
             pb.directory(f.getParentFile());
             pb.redirectErrorStream(true);
             p = pb.start();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import ao.uan.finalproject.domain.EntradaSaida;
 import ao.uan.finalproject.domain.Exercicio;
@@ -107,11 +108,14 @@ public class ExercicioController {
     ) {
 
         if(solucao != null) {
+            System.out.println(solucao.getExercicio());
             solucaoRepository.save(solucao);
         }
 
         List<Exercicio> exercicios = exercicioRepository.findAll();
         model.addAttribute("listExercicio", exercicios);
+
+        System.out.println(solucao);
 
         return "exercicio/list.html";
     }
