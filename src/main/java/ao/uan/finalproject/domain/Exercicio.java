@@ -19,7 +19,10 @@ public class Exercicio {
 
     private float score;
     private String titulo;
+
+    @Column(columnDefinition = "TEXT")
     private String descricao;
+    
     private String[] categorias;
     private float maxTempo;
 

@@ -24,8 +24,7 @@
                                 th:text="${exercicio.professor.utilizador.primeiroNome + ' ' + exercicio.professor.utilizador.primeiroNome}">
                             </div>
                         </div>
-                        <div th:text="${exercicio.descricao}"></div>
-                        <p></p>
+                        <div class="" style="text-align: justify; margin:10px;" data-th-utext="${exercicio.descricao}"></div>
                         <hr>
                         <div style="text-align: justify; margin-left: 10px;">
                             <p>Entrada e Saida</p>
@@ -48,27 +47,31 @@
                         Submeter Solucao
                     </div>
 
-                    <form action="#" th:action="@{/exercicio/solucao/add}" th:object="${solucao}" method="post">
-                            <div class="row form-group">
-                                <div class="col col-md-12"><label for="select" class=" form-control-label">Select</label></div>
-                                <div class="col-12 col-md-12">
-                                    <select name="select" id="select" class="form-control" th:field="*{linguagem}">
-                                        <option value="python">Python</option>
-                                        <option value="java">Java</option>
-                                    </select>
-                                </div>
+                    <form action="#" th:action="@{/exercicio/solucao/add}" th:object="${solucao}" method="post" style="margin: 10px;">
+                        <div class="row form-group">
+                            <div class="col col-md-12"><label for="select" class=" form-control-label">Select</label>
                             </div>
-                            <div class="row form-group">
-                                <div class="col col-md-12"><label for="textarea-input" class=" form-control-label">C'odigo</label></div>
-                                <div class="col-12 col-md-12"><textarea name="textarea-input" id="textarea-input" rows="9" th:field="*{code}" placeholder="Content..." class="form-control"></textarea></div>
+                            <div class="col-12 col-md-12">
+                                <select name="select" id="select" class="form-control" th:field="*{linguagem}">
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                </select>
                             </div>
-                            <div class="row form-group">
-                                <div class="col-12 col-md-12"><input type="text" th:field="*{exercicio.id}" th:value="${exercicio.id}"/></div>
-                            </div>
-                            <button class="btn btn-primary">Submeter</button>
                         </div>
-                    </form>
-                
+                        <div class="row form-group">
+                            <div class="col col-md-12"><label for="textarea-input"
+                                    class=" form-control-label">C'odigo</label></div>
+                            <div class="col-12 col-md-12"><textarea name="textarea-input" id="textarea-input" rows="9"
+                                    th:field="*{code}" class="form-control"></textarea></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-12"><input type="text" th:field="*{exercicio.id}"
+                                    th:value="${exercicio.id}" required /></div>
+                        </div>
+                        <button class="btn btn-primary">Submeter</button>
+                </div>
+                </form>
+
             </div>
         </div>
     </div>
