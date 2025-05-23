@@ -41,7 +41,7 @@ public class SolucaoHandler {
             Process processoCompilar = executeCommend("javac Main.java", f);
             processoCompilar.waitFor();
 
-            Process processoExecutar = executeCommend("ifconfig", f);
+            Process processoExecutar = executeCommend("Java Main", f);
             String saida = entradaSaida(entradaSaida.getEntrada(), processoExecutar);
             int exitCode = processoExecutar.waitFor();
 
