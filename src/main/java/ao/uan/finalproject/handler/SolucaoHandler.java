@@ -41,7 +41,7 @@ public class SolucaoHandler {
             Process processoCompilar = executeCommend("javac Main.java", f);
             processoCompilar.waitFor();
 
-            Process processoExecutar = executeCommend("Java Main", f);
+            Process processoExecutar = executeCommend("java Main", f);
             String saida = entradaSaida(entradaSaida.getEntrada(), processoExecutar);
             int exitCode = processoExecutar.waitFor();
 
@@ -80,7 +80,7 @@ public class SolucaoHandler {
         Process p = null;
         try {
             // bash - para o caso do MacOS
-            ProcessBuilder pb = new ProcessBuilder("sh", "-c", command);
+            ProcessBuilder pb = new ProcessBuilder("cmd", "-c", command);
             pb.directory(f.getParentFile());
             pb.redirectErrorStream(true);
             pb.redirectError(new File(f.getParentFile() + "/log")); //Log errors in specified log file.

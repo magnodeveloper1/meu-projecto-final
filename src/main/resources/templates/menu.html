@@ -3,32 +3,29 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <a href="@{/}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
 
                 <li class="menu-title">Cristiano Mbongo</li><!-- /.menu-title -->
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-user"></i>Perfil </a>
+                    <a th:href="@{/config/me}"> <i class="menu-icon ti-user"></i>Perfil </a>
                 </li>
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-settings"></i>Utilizadores e Grupos </a>
+                    <a th:href="@{/config/users}"> <i class="menu-icon ti-settings"></i>Utilizadores e Grupos </a>
                 </li>
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-close"></i>Sair </a>
+                    <a th:href="@{/logout}"> <i class="menu-icon ti-close"></i>Sair </a>
                 </li>
 
                 <li class="menu-title">Plataforma</li><!-- /.menu-title -->
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-plus"></i>Minhas Avaliações </a>
+                    <a th:href="@{/avaliacao}"> <i class="menu-icon ti-plus"></i>Minhas Avaliações </a>
                 </li>
                 <li>
                     <a th:href="@{/exercicio}"> <i class="menu-icon fa fa-tasks"></i>Exercícios Propostos </a>
                 </li>
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon fa fa-bookmark-o"></i>Avaliações Anteriores </a>
-                </li>
-                <li>
-                    <a href="widgets.html"> <i class="menu-icon fa fa-calendar-o"></i>Agendas </a>
+                    <a th:href="@{/exercicio/past}"> <i class="menu-icon fa fa-bookmark-o"></i>Avaliações Anteriores </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
