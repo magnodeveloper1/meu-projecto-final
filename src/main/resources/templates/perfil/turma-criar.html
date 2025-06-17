@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<div layout:fragment="styleadd">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css">
+    <style>
+        .main-container {
+            width: 795px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</div>
+
+
+<title>Eola - Criar Exercicios</title>
+<h1 layout:fragment="titulo">Criar Exercicios</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <form action="#" th:action="@{/turma/criar/add}" th:object="${turma}" method="post"
+            enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Dados da Turma</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="cc-payment" class="control-label mb-1">Descricao *</label>
+                                        <input type="text" class="form-control" aria-required="true"
+                                            aria-invalid="false" value="0.00" min="0.50" max="20"
+                                            th:field="*{descricao}">
+                                            
+                                        <label th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}">Email
+                                            Error</label>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="cc-payment" class="control-label mb-1">Ano</label>
+                                        <input type="number" class="form-control" aria-required="true"
+                                            aria-invalid="false" value="0.00" min="2011" max="2030" required
+                                            th:field="*{ano}">
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <label for="cc-name" class="control-label mb-1">Turno</label>
+                                        <select data-placeholder="Escolher Categorias..."
+                                            class="form-control" th:field="*{turno}">
+                                            <option value="0">Manhã</option>
+                                            <option value="1">Tarde</option>
+                                            <option value="2">Noite</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <label for="cc-name" class="control-label mb-1">Semestre</label>
+                                        <select data-placeholder="Escolher Categorias..."
+                                            class="form-control" th:field="*{turno}">
+                                            <option value="0">Primeiro</option>
+                                            <option value="1">Segundo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> <!-- .card -->
+
+                </div><!--/.col-->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Turma</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
+                                    <div>
+                                        <div class="form-group has-success">
+                                            <label for="cc-name" class="control-label mb-1">Departamento</label>
+                                            <select data-placeholder="Escolher Categorias..."
+                                                class="form-control" th:field="*{departamento}">
+                                                <option value="1">DEI - Engenharia Informática</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Sala
+                                                *</label>
+                                            <input type="text" class="form-control" aria-required="true"
+                                                aria-invalid="false" value="0.00" min="0.50" max="20" required
+                                                th:field="*{sala}">
+                                        </div>
+                                    <div>
+                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                            <i class="fa fa-next"></i>
+                                            <span id="payment-button-amount">Concluir Processo</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> <!-- .card -->
+
+                </div><!--/.col-->
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

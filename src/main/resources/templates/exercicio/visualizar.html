@@ -24,19 +24,17 @@
                                 th:text="${exercicio.professor.utilizador.primeiroNome + ' ' + exercicio.professor.utilizador.primeiroNome}">
                             </div>
                         </div>
-                        <div class="" style="text-align: justify; margin:10px;" data-th-utext="${exercicio.descricao}"></div>
+                        <div class="" style="text-align: justify; margin:10px;" data-th-utext="${exercicio.descricao}">
+                        </div>
                         <hr>
                         <div style="text-align: justify; margin-left: 10px;">
                             <p>Entrada e Saida</p>
                             3
-                            <div th:each="io : ${exercicio.entradaSaida}">
-                                <div th:text="${io.entrada}"></div>
-                                <div th:text="${io.saida}"></div>
-                                <div th:text="${io.entrada1}"></div>
-                                <div th:text="${io.saida1}"></div>
-                                <div th:text="${io.entrada2}"></div>
-                                <div th:text="${io.saida2}"></div>
-                            </div>
+                            <th:block th:each="i: ${#numbers.sequence(0, 2)}">
+                                <hr>
+                                <div th:text="${exercicio.entradaSaida.get(i).entrada}"></div>
+                                <div th:text="${exercicio.entradaSaida.get(i).saida}"></div>
+                            </th:block>
                         </div>
                     </section>
                 </div>
@@ -47,7 +45,8 @@
                         Submeter Solucao
                     </div>
 
-                    <form action="#" th:action="@{/exercicio/solucao/add}" th:object="${solucao}" method="post" style="margin: 10px;">
+                    <form action="#" th:action="@{/exercicio/solucao/add}" th:object="${solucao}" method="post"
+                        style="margin: 10px;">
                         <div class="row form-group">
                             <div class="col col-md-12"><label for="select" class=" form-control-label">Select</label>
                             </div>
@@ -60,13 +59,14 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-12"><label for="textarea-input"
-                                    class=" form-control-label">C'odigo</label></div>
+                                    class=" form-control-label">Código</label></div>
                             <div class="col-12 col-md-12"><textarea name="textarea-input" id="textarea-input" rows="9"
                                     th:field="*{code}" class="form-control"></textarea></div>
                         </div>
                         <div class="row form-group">
-                            <div class="col-12 col-md-12"><input type="text" th:field="*{exercicio.id}"
-                                    th:value="${exercicio.id}" required /></div>
+                            <div class="col-12 col-md-12"><input type="text"
+                                 th:value="${exercicio.id}" name="idExercicio"
+                                   required hidden/></div>
                         </div>
                         <button class="btn btn-primary">Submeter</button>
                 </div>

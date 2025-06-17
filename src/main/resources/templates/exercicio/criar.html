@@ -18,15 +18,15 @@
 
 <div class="content" layout:fragment="content">
     <div class="animated fadeIn">
-        <form action="#" th:action="@{/exercicio/criar/add}" th:object="${entradaSaida}" method="post">
+        <form action="#" th:action="@{/exercicio/criar/add}" th:object="${exercicio}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Descricao do Exercicio</strong>
                         </div>
-                        <textarea th:field="*{exercicio.descricao}" id="editor"
-                            style="width: 100% !important;" required></textarea>
+                        <textarea th:field="*{descricao}" id="editor" style="width: 100% !important;"
+                            required></textarea>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -40,22 +40,22 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Titulo Do Exercicio *</label>
-                                        <input type="text" class="form-control"
-                                            aria-required="true" aria-invalid="false" value="0.00" min="0.50" max="20"
-                                            required th:field="*{exercicio.titulo}">
+                                        <input type="text" class="form-control" aria-required="true"
+                                            aria-invalid="false" value="0.00" min="0.50" max="20" required
+                                            th:field="*{titulo}">
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Score</label>
-                                        <input type="number" class="form-control"
-                                            aria-required="true" aria-invalid="false" value="0.00" min="0.50" max="20"
-                                            required th:field="*{exercicio.score}">
+                                        <input type="number" class="form-control" aria-required="true"
+                                            aria-invalid="false" value="0.00" min="0.50" max="20" required
+                                            th:field="*{score}">
                                     </div>
                                     <div class="form-group has-success">
                                         <label for="cc-name" class="control-label mb-1">Categorias</label>
                                         <select data-placeholder="Escolher Categorias..." multiple
-                                            class="standardSelect" th:field="*{exercicio.categorias}">
+                                            class="standardSelect" th:field="*{categorias}">
                                             <option value="" label="default"></option>
                                             <option value="java">Java</option>
                                             <option value="algoritmo">Algoritmo</option>
@@ -64,9 +64,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cc-number" class="control-label mb-1">Tempo Max. Execucao</label>
-                                        <input type="number"
-                                            class="form-control cc-number identified visa" value=""
-                                            th:field="*{exercicio.maxTempo}">
+                                        <input type="number" class="form-control cc-number identified visa" value=""
+                                            th:field="*{maxTempo}">
                                         <span class="help-block" data-valmsg-for="cc-number"
                                             data-valmsg-replace="true"></span>
                                     </div>
@@ -81,46 +80,25 @@
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Entradas/Saidas</strong>
-                            <p>Apenas 5 casos</p>
+                            <p>Preencha com N casos de testes</p>
                         </div>
                         <div class="card-body">
                             <!-- Credit Card -->
                             <div id="pay-invoice">
                                 <div class="card-body">
-                                    <form action="#" method="post" novalidate="novalidate">
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Caso 1</label>
-                                            <input type="text" class="form-control" th:field="*{entrada}" required>
-                                            <input type="text" class="form-control" th:field="*{saida}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Caso 2</label>
-                                            <input type="text" class="form-control" th:field="*{entrada1}" required>
-                                            <input type="text" class="form-control" th:field="*{saida1}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Caso 3</label>
-                                            <input type="text" class="form-control" th:field="*{entrada2}" required>
-                                            <input type="text" class="form-control" th:field="*{saida2}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Caso 4</label>
-                                            <input type="text" class="form-control" th:field="*{entrada3}" required>
-                                            <input type="text" class="form-control" th:field="*{saida3}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Caso 5</label>
-                                            <input type="text" class="form-control" th:field="*{entrada4}" required>
-                                            <input type="text" class="form-control" th:field="*{saida4}" required>
-                                        </div>
-                                        <div>
-                                            <button id="payment-button" type="submit"
-                                                class="btn btn-lg btn-info btn-block">
-                                                <i class="fa fa-next"></i>
-                                                <span id="payment-button-amount">Concluir Processo</span>
-                                            </button>
-                                        </div>
-                                    </form>
+                                    <div class="form-group">
+                                        <label for="cc-payment" class="control-label mb-1">Casos de Teste</label>
+                                        <h6>Preencha um ficheiro .txt com as entradas e saidas.</h6>
+                                        <h6>As entradas e saidas estarão na mesma linha. Separados por ;</h6>
+                                        <h6>E cada entrada deverá ser separado da outra por um espaço simples</h6>
+                                        <input type="file" class="form-control" name="txtInputOutput" required>
+                                    </div>
+                                    <div>
+                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                            <i class="fa fa-next"></i>
+                                            <span id="payment-button-amount">Concluir Processo</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 

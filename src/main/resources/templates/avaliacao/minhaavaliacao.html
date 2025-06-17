@@ -9,31 +9,35 @@
         
         <div class="row">
             <div class="col-lg-8">
-                <a th:href="@{exercicio/criar}" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Exercicios</a>
+                <a th:href="@{/avaliacao/criar}" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Avaliação </a>
                 <br/>
                 <br/>
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Lista de Exerc'icios</strong>
                     </div>
-                    <div class="table-stats order-table ov-h">
+                    <div class="table-stats ov-h">
                         <table class="table ">
                             <thead>
                                 <tr>
                                     <th class="serial">#</th>
-                                    <th>Titulo</th>
-                                    <th>Categorias</th>
-                                    <th>Score</th>
-                                    <th>Status</th>
+                                    <th>Tipo de Prova</th>
+                                    <th>Desc.</th>
+                                    <th>Data da Avaliação</th>
+                                    <th>Criado Por</th>
+                                    <th>Criado Aos</th>
+                                    <th>*</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <tr th:each="data : ${listExercicio}">
+                                <tr th:each="data : ${listAvaliacao}">
                                     <td class="serial" th:text="${data.id}"></td>
-                                    <td> <span class="name" th:text="${data.titulo}"></span> </td>
-                                    <td> <span class="product" th:each="categoria : ${data.categorias}" th:if="${!categoria.equals('')}" th:text="${categoria.concat(', ')}"></span> </td>
-                                    <td><span class="count" th:text="${data.score}"></span></td>
+                                    <td> <span class="name" th:text="${data.tipo.displayValue}"></span> </td>
+                                    <td class="serial" th:text="${data.descricao}"></td>
+                                    <td th:text="${data.dataDaAvaliacao}">dt</td>
+                                    <td>Cristiano Mbongo</td>
+                                    <td th:text="${data.dataDeCriacao}">dsdsd</td>
                                     <td>
                                         <span class="badge badge-complete"><a th:href="@{/exercicio/view} + ${'/'+data.id}">Resolver</a></span>
                                     </td>

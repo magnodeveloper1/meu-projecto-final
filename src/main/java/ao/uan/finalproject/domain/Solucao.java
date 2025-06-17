@@ -1,10 +1,10 @@
 package ao.uan.finalproject.domain;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
-import ao.uan.finalproject.handler.SolucaoEventHandler;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -12,34 +12,58 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostPersist;
+import jakarta.persistence.PrePersist;
 
 @Entity
-@EntityListeners(SolucaoEventHandler.class)
 public class Solucao {
-    
+
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String code;
-    
+
     @ManyToOne
     @JoinColumn
     private Utilizador utilizador;
-    
+
     @ManyToOne
     @JoinColumn
     private Exercicio exercicio;
 
     private Date dataSubmissao;
 
-    private boolean ok;
+    private Boolean ok;
 
     private String linguagem;
 
+    private String resposta;
+
+    @JoinColumn(name = "solucao_id")
+    @OneToMany
+    private List<TestesSolucao> testesEfetuados;
+
     public Long getId() {
         return id;
+    }
+
+    public Boolean getOk() {
+        return ok;
+    }
+
+    public void setOk(Boolean ok) {
+        this.ok = ok;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 
     public void setId(Long id) {
@@ -92,6 +116,14 @@ public class Solucao {
 
     public void setLinguagem(String linguagem) {
         this.linguagem = linguagem;
+    }
+
+    public List<TestesSolucao> getTestesEfetuados() {
+        return testesEfetuados;
+    }
+
+    public void setTestesEfetuados(List<TestesSolucao> testesEfetuados) {
+        this.testesEfetuados = testesEfetuados;
     }
 
 }

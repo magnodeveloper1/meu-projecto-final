@@ -4,12 +4,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import ao.uan.finalproject.dto.enums.TipoAvaliacao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -23,14 +24,17 @@ public class Avaliacao {
 
     private TipoAvaliacao tipo;
     private String descricao;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     private Date dataDaAvaliacao;
+
     private Date dataDeCriacao;
     private int qtdExercicio;
     private int duracaoMinutos;
     
     @JoinColumn(name = "exercicio_id")
     @OneToMany
-    private List<Exercicio> exercicio;
+    private List<AvaliacaoExercicio> exercicios;
 
     public Long getId() {
         return id;
@@ -88,11 +92,11 @@ public class Avaliacao {
         this.duracaoMinutos = duracaoMinutos;
     }
 
-    public List<Exercicio> getExercicio() {
-        return exercicio;
+    public List<AvaliacaoExercicio> getExercicio() {
+        return exercicios;
     }
 
-    public void setExercicio(List<Exercicio> exercicio) {
-        this.exercicio = exercicio;
+    public void setExercicio(List<AvaliacaoExercicio> exercicios) {
+        this.exercicios = exercicios;
     }
 }

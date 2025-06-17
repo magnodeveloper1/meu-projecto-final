@@ -1,5 +1,6 @@
 package ao.uan.finalproject.domain;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +18,8 @@ public class Departamento {
     private Long id;
 
     private String nome;
+
+    private Date dateCriacao;
 
     @JoinColumn(name = "turma_id")
     @OneToMany
@@ -44,5 +47,13 @@ public class Departamento {
 
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
+    }
+
+    public Date getDateCriacao() {
+        return dateCriacao;
+    }
+
+    public void setDateCriacao(Date dateCriacao) {
+        this.dateCriacao = dateCriacao;
     }
 }

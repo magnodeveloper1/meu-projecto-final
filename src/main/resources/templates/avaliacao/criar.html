@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<div layout:fragment="styleadd">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css">
+    <style>
+        .main-container {
+            width: 795px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</div>
+
+
+<title>Eola - Criar Exercicios</title>
+<h1 layout:fragment="titulo">Criar Exercicios</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <form action="#" th:action="@{/avaliacao/criar/add}" th:object="${avaliacao}" method="post"
+            enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Descricao do Exercicio</strong>
+                            <table class="table" id="example">
+                                <thead>
+                                    <tr>
+                                        <th>ID Exercicio</th>
+                                        <th>Titulo</th>
+                                        <th>Criado por</th>
+                                        <th>Utilizar</th>
+                                        <th>valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="exercicio : ${listExercicio}">
+                                        <td th:text="${exercicio.id}">23</td>
+                                        <td th:text="${exercicio.titulo}">Soma de 2 números</td>
+                                        <td>Cristiano Mbongo</td>
+                                        <td><input type="checkbox" id=""></td>
+                                        <td>
+                                            <input type="text" class="form form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Dados da Avaliação</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice" class="form-group">
+                                <label for="">Tipo de Avaliação</label>
+                                <select name="color" class="form-control" th:field="*{tipo}">
+                                    <option th:each="tipo : ${T(ao.uan.finalproject.dto.enums.TipoAvaliacao).values()}"
+                                        th:value="${tipo}" th:text="${tipo.displayValue}"></option>
+                                </select>
+                            </div>
+                            <div id="pay-invoice" class="form-group">
+                                <label for="">Data da Avaliação</label>
+                                <input type="datetime-local" name="data_da_avaliacao" class="form-control">
+                            </div>
+                            <div id="pay-invoice" class="form-group">
+                                <label for="">Adicionar Descricão:</label>
+                                <input type="text" th:field="*{descricao}" class="form-control">
+                            </div>
+                        </div>
+                    </div> <!-- .card -->
+
+                </div><!--/.col-->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Finalização</strong>
+                            <p>Cria a tua avaliação de programação</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h6>Defina o tempo que durará a tua avaliação</h6>
+                                        <br>
+
+                                        <div id="pay-invoice">
+                                            <label for="">Adicionar Descricão:</label>
+                                            <select th:field="*{duracaoMinutos}" class="form-control">
+                                                <option value="15">15 minutos</option>
+                                                <option value="30">30 minutos</option>
+                                                <option value="45">45 minutos</option>
+                                                <option value="60">60 minutos</option>
+                                                <option value="75">75 minutos</option>
+                                                <option value="90">90 minutos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                            <i class="fa fa-next"></i>
+                                            <span id="payment-button-amount">Concluir Processo</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> <!-- .card -->
+
+                </div><!--/.col-->
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

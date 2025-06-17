@@ -1,8 +1,10 @@
 package ao.uan.finalproject.domain;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,9 @@ public class Exercicio {
 
     private boolean ativo;
     private boolean criadoEmAvaliacao;
+
+    @Column(nullable = true)
+    private Date dataDeCriacao;
 
     public Long getId() {
         return id;
@@ -127,5 +132,13 @@ public class Exercicio {
 
     public void setMaxTempo(float maxTempo) {
         this.maxTempo = maxTempo;
+    }
+
+    public Date getDataDeCriacao() {
+        return dataDeCriacao;
+    }
+
+    public void setDataDeCriacao(Date dataDeCriacao) {
+        this.dataDeCriacao = dataDeCriacao;
     }
 }

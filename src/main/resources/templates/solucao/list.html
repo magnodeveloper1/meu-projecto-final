@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<title>Eola - Lista de Exercicios</title>
+<h1 layout:fragment="titulo">Lista de Soluções</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="progress-box progress-1 col-3">
+                <h4 class="por-title">Exercicios Resolvidos</h4>
+                <div class="por-txt">96,930 (40%)</div>
+                <div class="progress mb-2" style="height: 5px;">
+                    <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="progress-box progress-2 col-3">
+                <h4 class="por-title">Posicao de Estudante</h4>
+                <div class="por-txt">3,220 Users (24%)</div>
+                <div class="progress mb-2" style="height: 5px;">
+                    <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Lista de Soluções</strong>
+                    </div>
+                    <div class="table-stats ov-h">
+
+                        <table class="table table-striped" id="example">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>Titulo</th>
+                                    <th>Categorias</th>
+                                    <th>Resultado</th>
+                                    <th>Data de Resolução</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr th:each="data : ${listSolucao}">
+                                    <td>
+                                        <span class="badge badge-complete"><a th:href="@{/solucao} + ${'/'+data.id}"
+                                                th:text="${data.id}"></a></span>
+                                    </td>
+                                    <td><span class="name" th:text="${data.exercicio.titulo}"></span> </td>
+                                    <td><span th:text="${data.linguagem}"></span></td>
+                                    <td><span th:text="${data.resposta}"></span></td>
+                                    <td><span th:text="${data.dataSubmissao}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -1,6 +1,7 @@
 package ao.uan.finalproject.domain;
 
-import jakarta.persistence.CascadeType;
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,10 +23,24 @@ public class Turma {
     private String ano;
     private String semestre;
 
+    private Date dataCriacao;
+
     @JoinColumn(name = "departamento_id", nullable = false)
     @ManyToOne
     private Departamento departamento;
 
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
     public Long getId() {
         return id;
     }

@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<title>Eola - Lista de Exercicios</title>
+<h1 layout:fragment="titulo">Lista de Exercicios</h1>
+
+<div class="content" layout:fragment="content">
+    <div class="animated fadeIn">
+        <a th:href="@{/turma/criar}" class="btn btn-primary">Criar Turma</a>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Lista de Exercícios Feitos</strong>
+                    </div>
+                    <div class="table-stats ov-h">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>Descrição</th>
+                                    <th>Sala</th>
+                                    <th>Ano</th>
+                                    <th>Turno</th>
+                                    <th>Data de Criação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr th:each="data : ${turmaList}">
+                                    <td>
+                                        <span class="badge badge-complete"><a th:href="@{/solucao} + ${'/'+data.id}"
+                                                th:text="${data.id}"></a></span>
+                                    </td>
+                                    <td> <span class="name" th:text="${data.descricao}"></span> </td>
+                                    <td> <span th:text="${data.sala}"></span></td>
+                                    <td><span th:text="${data.ano}"></span></td>
+                                    <td><span th:text="${data.turno}"></span></td>
+                                    <td><span th:text="${data.dataCriacao}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="progress-box progress-1">
+                    <h4 class="por-title">Qtd de Turmas Existentes</h4>
+                    <div class="por-txt">96,930 (40%)</div>
+                    <div class="progress mb-2" style="height: 5px;">
+                        <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="progress-box progress-2">
+                    <h4 class="por-title">Media de Alunos por turma</h4>
+                    <div class="por-txt">3,220 Users (24%)</div>
+                    <div class="progress mb-2" style="height: 5px;">
+                        <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

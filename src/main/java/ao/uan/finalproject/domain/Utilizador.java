@@ -2,12 +2,16 @@ package ao.uan.finalproject.domain;
 
 import java.util.Date;
 
+import org.springframework.util.DigestUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +36,38 @@ public class Utilizador {
 
     @Column(nullable = false)
     private String password;
+
+    private Date dateCriacao;
+
+    @JoinColumn(name = "turma_id")
+    @ManyToOne
+    private Turma turma;
+
+    private String tipo; // 0-estudante, 1-professor
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Date getDateCriacao() {
+        return dateCriacao;
+    }
+
+    public void setDateCriacao(Date dateCriacao) {
+        this.dateCriacao = dateCriacao;
+    }
 
     public Long getId() {
         return id;
@@ -86,6 +122,6 @@ public class Utilizador {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
     }
 }

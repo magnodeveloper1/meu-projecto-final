@@ -14,18 +14,27 @@
                     <a th:href="@{/config/users}"> <i class="menu-icon ti-settings"></i>Utilizadores e Grupos </a>
                 </li>
                 <li>
+                    <a th:href="@{/turma/listar.html}"> <i class="menu-icon ti-settings"></i>Listar Turma </a>
+                </li>
+                <li>
+                    <a th:href="@{/departamento/listar.html}"> <i class="menu-icon ti-settings"></i>Listar Departamento </a>
+                </li>
+                <li>
                     <a th:href="@{/logout}"> <i class="menu-icon ti-close"></i>Sair </a>
                 </li>
 
                 <li class="menu-title">Plataforma</li><!-- /.menu-title -->
                 <li>
-                    <a th:href="@{/avaliacao}"> <i class="menu-icon ti-plus"></i>Minhas Avaliações </a>
+                    <a th:href="@{/solucao/list.html}"> <i class="menu-icon ti-plus"></i>Minhas Soluções </a>
                 </li>
                 <li>
-                    <a th:href="@{/exercicio}"> <i class="menu-icon fa fa-tasks"></i>Exercícios Propostos </a>
+                    <a th:href="@{/avaliacao/lista.html}"> <i class="menu-icon ti-plus"></i>Minhas Avaliações </a>
                 </li>
                 <li>
-                    <a th:href="@{/exercicio/past}"> <i class="menu-icon fa fa-bookmark-o"></i>Avaliações Anteriores </a>
+                    <a th:href="@{/exercicio/listar.html}"> <i class="menu-icon fa fa-tasks"></i>Exercícios Propostos </a>
+                </li>
+                <li>
+                    <a th:href="@{/avaliacao/past.html}"> <i class="menu-icon fa fa-bookmark-o"></i>Avaliações Anteriores </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
